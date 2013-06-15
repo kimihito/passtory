@@ -1,14 +1,34 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin ranking_background($start,$end){
+  background:$start;
+  background:-webkit-linear-gradient(left top,$start,$end);
+  background:-moz-linear-gradient(left top,$start,$end);
+  background:-o-linear-gradient(left top,$start,$end);    
+}
 
+h1.ranking{
+  font-size:50px;
+}
+.ranking{
+  div.post:nth-child(1){
+    @include ranking_background(red,#fee);
+  }
+  div.post:nth-child(2){
+    @include ranking_background(#f44,#fee);
+  }
+  div.post:nth-child(3){
+    @include ranking_background(#f88,#fee);
+  }
+}
 
 .post{
-  width:500px;
   min-height:30px;
   border-radius:4px;
   padding:10px;
-  margin:10px;
+  margin-bottom:10px;
+  @include ranking_background(#fdd,#fee);
   box-shadow: 0 0 2px gray;
   .name{
     font-weight: bold;
@@ -23,6 +43,10 @@
     padding:10px;
     &:hover{
       background:#d00
+    }
+    &:active{
+      background:#000;
+      color:red;
     }
     background:#faa;
     font-weight:bold;

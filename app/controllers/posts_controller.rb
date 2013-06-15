@@ -1,17 +1,9 @@
 class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.json
+  protect_from_forgery except: :create
   def index
     @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
 
@@ -21,24 +13,12 @@ class PostsController < ApplicationController
     end
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
-    @post = Post.new(params[:post])
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    #render nothing:true and return unless params[:token] == params[:token]
+    Post.create(params[:post])
+    #Pusher.foobar
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
     @post.score += 1
@@ -46,4 +26,10 @@ class PostsController < ApplicationController
     render json: @post
   end
 
+  def today
+    @posts = Post.ranking 1
+  end
+  def ranking
+    @posts = Post.ranking
+  end
 end

@@ -2,6 +2,7 @@ Passtory::Application.routes.draw do
   resources :posts
 
 
-  get "top/index"
-  root :to => 'top#index'
+  get "today" => 'posts#today'
+  get "ranking" => 'posts#ranking'
+  root :to => 'posts#index'
 end
