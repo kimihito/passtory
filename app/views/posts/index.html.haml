@@ -4,8 +4,23 @@
   var pusher = new Pusher('#{Pusher.key}');
   var channel = pusher.subscribe('post');
   channel.bind('new', function(data) {
-    console.log(data)
-    $("<div>").html(data).prependTo($(".stream"))
+    div=$("<div>").html(data).prependTo($(".stream"))
+    var h=div.height()+10;
+    var w=div.width()-20;
+    div.css({position:'relative',height:0});
+    div.children().css({position:'absolute',bottom:0,width:w})
+    var time=new Date();
+    function timer(){
+      var t=(new Date()-time)/250;
+      if(t>1){
+        div.css({position:'',height:'',opacity:''})
+        div.children().css({position:'',bottom:'',width:''})
+      }else{
+        div.css({height:h*t,opacity:t})
+        setTimeout(timer,10);
+      }
+    }
+    timer();
   });
 
 %div.stream
