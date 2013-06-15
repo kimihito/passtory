@@ -4,8 +4,19 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+#
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+
+group :development do
+  gem 'sqlite3'
+  gem 'pry-rails'
+  gem 'sqlite3'
+  gem 'rails_best_practices'
+  gem 'erb2haml'
+end
 
 
 # Gems used only for assets and not required
@@ -15,24 +26,24 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails'
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'compass-rails'
+  gem 'compass-colors'
+  gem 'sassy-buttons'
+  gem 'zurui-sass-rails'
+  gem 'haml-rails'
 end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'kaminari'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+#Authentication
+gem 'omniauth-twitter'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+#configuration / settings
+gem 'settingslogic'
