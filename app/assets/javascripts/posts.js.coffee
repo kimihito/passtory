@@ -1,6 +1,6 @@
 $ ->
-  $(".post").click ".button", ->
-    div = $(this)
+  $(document).click ".post .button", (e)->
+    div = $(e.target).parents(".post")
     console.log $(this).data('post-id')
     $.post '/posts/'+div.data('post-id'),
       {

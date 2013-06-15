@@ -47,3 +47,6 @@ gem 'omniauth-twitter'
 
 #configuration / settings
 gem 'settingslogic'
+
+gem 'pusher'
+

@@ -15,8 +15,11 @@ class PostsController < ApplicationController
 
   def create
     #render nothing:true and return unless params[:token] == params[:token]
-    Post.create(params[:post])
+    post = Post.create(params[:post])
+    html = render_to_string partial: 'post', format: 'html', locals: {post: post}
     #Pusher.foobar
+    Pusher['post'].trigger('new', html)
+    render text:html
   end
 
   def update
